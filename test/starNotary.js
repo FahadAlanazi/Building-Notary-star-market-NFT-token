@@ -67,14 +67,20 @@ contract('StarNotary', async (accs) => {
   });
 
   // Write Tests for:
-
+    it('can Lookup a Star', async() => {
+        let tokenId = 6;
+        await instance.createStar('Awesome Star!', tokenId, {from: accounts[0]});
+        const result = await instance.lookUptokenIdToStarInfo.call(tokenId);
+        assert.equal(result, 'Awesome Star!')
+    });
 // 1) The token name and token symbol are added properly.
-  it('can Lookup a Star', async() => {
-      let tokenId = 6;
-      await instance.createStar('Awesome Star!', tokenId, {from: accounts[0]});
-      const result = await instance.lookUptokenIdToStarInfo.call(tokenId);
-      assert.equal(result, 'Awesome Star!')
-  });
+
+    it('The token name and token symbol are added properly', async() => {
+        const name = await instance.name();
+        const symbol = await instance.symbol();
+        assert.equal(name, 'StarsMarket')
+        assert.equal(symbol, 'STM')
+    });
 // 2) 2 users can exchange their stars.
   it('2 users can exchange their stars', async() => {
       let user1 = accounts[1]
