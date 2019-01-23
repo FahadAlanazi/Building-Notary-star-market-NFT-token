@@ -12,7 +12,6 @@ contract StarNotary is ERC721 {
 //  Add a name and a symbol for your starNotary tokens
     string public constant name = "StarsMarket";
     string public constant symbol = "STM";
-    uint8 public constant decimals = 0;
 //
 
 
